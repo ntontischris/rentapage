@@ -1,0 +1,106 @@
+.aurora-bg-1,
+.aurora-bg-2,
+.aurora-bg-3 {
+  position: absolute;
+  inset: 0;
+  background-size: 400% 400%;
+  opacity: 0.5;
+  transition: all 0.5s ease;
+}
+
+.aurora-bg-1 {
+  background: linear-gradient(
+    45deg,
+    rgba(123, 31, 162, 0.5),
+    rgba(103, 58, 183, 0.5),
+    rgba(244, 143, 177, 0.5)
+  );
+  animation: aurora 15s ease infinite;
+}
+
+.aurora-bg-2 {
+  background: linear-gradient(
+    45deg,
+    rgba(32, 0, 255, 0.5),
+    rgba(175, 82, 222, 0.5),
+    rgba(255, 0, 255, 0.5)
+  );
+  animation: aurora 20s ease infinite;
+}
+
+.aurora-bg-3 {
+  background: linear-gradient(
+    45deg,
+    rgba(0, 255, 255, 0.5),
+    rgba(128, 0, 255, 0.5),
+    rgba(255, 0, 128, 0.5)
+  );
+  animation: aurora 25s ease infinite;
+}
+
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+               0 0 20px rgba(255, 255, 255, 0.3),
+               0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.card-glow {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.2),
+              0 0 40px rgba(147, 51, 234, 0.1);
+}
+
+.card-glow-xl {
+  box-shadow: 0 0 30px rgba(147, 51, 234, 0.3),
+              0 0 60px rgba(147, 51, 234, 0.2);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes animate-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: animate-gradient 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                 0 0 20px rgba(255, 255, 255, 0.3),
+                 0 0 30px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
+                 0 0 25px rgba(255, 255, 255, 0.4),
+                 0 0 35px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.glow-text {
+  animation: pulse-glow 3s infinite;
+}
+
