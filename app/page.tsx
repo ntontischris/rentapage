@@ -1,90 +1,87 @@
 'use client'
-
-import { useEffect, useState, useRef } from 'react'
-import { Bot, Mic, User, Zap, Sparkles } from 'lucide-react'
+ 
+import { Bot, Zap, Sparkles, Code } from 'lucide-react'
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { motion, useScroll, useTransform } from "framer-motion"
-import StarryBackground from '@/components/StarryBackground'
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion } from "framer-motion"
 import { Header } from '@/components/Header'
-
+import { PageBackground } from '@/components/PageBackground'
+ 
 export default function HomePage() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
-
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      if (containerRef.current) {
-        const { left, top, width, height } = containerRef.current.getBoundingClientRect()
-        const x = (event.clientX - left) / width
-        const y = (event.clientY - top) / height
-        setMousePosition({ x, y })
-      }
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
   return (
-    <div ref={containerRef} className="min-h-screen bg-gradient-to-b from-slate-950 to-purple-950 relative overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-background">
       <Header />
-      <StarryBackground />
-      <main className="container mx-auto px-4 py-16 relative z-10">
-        <motion.div 
-          style={{ y }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-500 mb-6">
-            Welcome to RentaPage
-          </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Your all-in-one solution for creating beautiful, interactive web pages
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-          <Card className="bg-black/50 border-purple-500/20">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Zap className="w-5 h-5 text-purple-500" />
-                Fast Development
-              </CardTitle>
-              <CardDescription>Build pages quickly with our intuitive tools</CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="bg-black/50 border-purple-500/20">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-purple-500" />
-                Beautiful Design
-              </CardTitle>
-              <CardDescription>Create stunning, responsive layouts effortlessly</CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="bg-black/50 border-purple-500/20">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Bot className="w-5 h-5 text-purple-500" />
-                AI-Powered
-              </CardTitle>
-              <CardDescription>Let AI help you create the perfect page</CardDescription>
-            </CardHeader>
-          </Card>
-        </div>
-
-        <div className="text-center mt-16">
-          <Link href="/get-started">
-            <Button size="lg" className="bg-purple-600 hover:bg-purple-700">
-              Get Started
-            </Button>
-          </Link>
-        </div>
+      <main className="flex-grow">
+        <PageBackground />
+        <section className="relative py-20 md:py-32 text-center">
+          <div className="container">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
+                Create Stunning Web Pages, Effortlessly
+              </h1>
+              <p className="max-w-2xl mx-auto text-lg text-muted-foreground mb-8">
+                RentaPage provides the tools you need to build beautiful and
+                interactive websites with ease.
+              </p>
+              <div className="space-x-4">
+                <Button asChild size="lg">
+                  <Link href="/get-started">Get Started for Free</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/about">Learn More</Link>
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+ 
+        <section className="py-20 md:py-32 bg-secondary">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold">
+                Features Built for Modern Web Development
+              </h2>
+              <p className="max-w-xl mx-auto text-muted-foreground">
+                Everything you need to create, manage, and deploy your web
+                projects.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card>
+                <CardHeader>
+                  <Zap className="w-8 h-8 mb-4 text-primary" />
+                  <CardTitle>Fast Development</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Build pages quickly with our intuitive tools.</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <Sparkles className="w-8 h-8 mb-4 text-primary" />
+                  <CardTitle>Beautiful Design</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Create stunning, responsive layouts effortlessly.</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <Bot className="w-8 h-8 mb-4 text-primary" />
+                  <CardTitle>AI-Powered</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p>Let AI help you create the perfect page.</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   )
