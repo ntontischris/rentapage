@@ -3,11 +3,13 @@
 import { useEffect, useState, useRef } from 'react'
 import { Bot, Mic, User, Zap, Sparkles } from 'lucide-react'
 import Link from "next/link"
+import dynamic from 'next/dynamic'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { motion, useScroll, useTransform } from "framer-motion"
-import StarryBackground from '@/components/StarryBackground'
 import { Header } from '@/components/Header'
+
+const StarryBackground = dynamic(() => import('@/components/StarryBackground'), { ssr: false })
 
 export default function HomePage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
