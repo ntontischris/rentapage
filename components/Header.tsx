@@ -45,7 +45,7 @@ export function Header() {
     window.addEventListener('scroll', handleScroll)
     window.addEventListener('mousemove', handleMouseMove)
     return () => {
-      window.removeEventListener('scroll', handleMouseMove)
+      window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('mousemove', handleMouseMove)
     }
   }, [])
